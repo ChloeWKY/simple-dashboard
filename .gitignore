@@ -29,3 +29,7 @@ build/
 # IDE specific files
 .vscode/
 .idea/
+
+# Docker-specific files
+docker-compose.override.yml
+.dockerignore

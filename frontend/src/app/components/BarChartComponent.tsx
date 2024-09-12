@@ -13,7 +13,7 @@ import {
   Legend         // Plugin for legend
 } from 'chart.js';
 
-// Register the components and scales you need for the chart
+// Register the components and scales for the chart
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -35,18 +35,24 @@ const BarChartComponent = () => {
           labels: labels,
           datasets: [
             {
-              label: 'Bar Chart',
-              data: data,
-              backgroundColor: [
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)'
-              ],
-              borderColor: [
-                'rgba(75, 192, 192, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)'
-              ],
+              label: 'Product A', // First legend entry
+              data: [data[0], 0, 0],  // Only data for Product A
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Light green
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1,
+            },
+            {
+              label: 'Product B', // Second legend entry
+              data: [0, data[1], 0],  // Only data for Product B
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',  // Light blue
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 1,
+            },
+            {
+              label: 'Product C', // Third legend entry
+              data: [0, 0, data[2]],  // Only data for Product C
+              backgroundColor: 'rgba(255, 206, 86, 0.2)',  // Light yellow
+              borderColor: 'rgba(255, 206, 86, 1)',
               borderWidth: 1,
             }
           ]
@@ -61,17 +67,17 @@ const BarChartComponent = () => {
   return (
     <div>
       {error ? (
-        <p>{error}</p>
+        <p className="text-red-500">{error}</p>
       ) : chartData ? (
         <Bar data={chartData} options={{
           responsive: true,
           plugins: {
             legend: {
+              display: true,
               position: 'top',
             },
             title: {
-              display: true,
-              text: 'Dynamic Bar Chart'
+              display: false,
             },
           },
           scales: {
@@ -80,8 +86,8 @@ const BarChartComponent = () => {
             },
             y: {
               beginAtZero: true // Ensure y-axis starts at zero
-            }
-          }
+            },
+          },
         }} />
       ) : (
         <p>Loading...</p>

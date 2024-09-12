@@ -41,7 +41,7 @@ const LineChartComponent = () => {
               data: data,
               borderColor: 'rgba(75,192,192,1)',
               backgroundColor: 'rgba(75,192,192,0.2)',
-              fill: true, // You can set this to false if you don't want the area below the line to be filled
+              fill: true,
               tension: 0.4,  // For smooth line curves
             }
           ]
@@ -56,8 +56,8 @@ const LineChartComponent = () => {
   return (
     <div>
       {error ? (
-        <p>{error}</p>
-        ) : chartData ? (
+        <p className="text-red-500">{error}</p>
+      ) : chartData ? (
         <Line 
           data={chartData}
           options={{
@@ -67,16 +67,15 @@ const LineChartComponent = () => {
                 position: 'top',
               },
               title: {
-                display: true,
-                text: 'Dynamic Line Chart'
+                display: false,
               },
             },
             scales: {
               x: {
-                type: 'category',  // Ensure x-axis uses 'category' scale
+                type: 'category',
               },
               y: {
-                beginAtZero: true // Ensure y-axis starts from 0
+                beginAtZero: true
               }
             }
           }}

@@ -42,7 +42,7 @@ const PieChartComponent = () => {
   return (
     <div>
       {error ? (
-        <p>{error}</p>
+        <p className="text-red-500">{error}</p>
       ) : chartData ? (
         <Pie
           data={chartData}
